@@ -28,7 +28,7 @@ if (Env.isProduction) mavenPublishing {
         licenses {
             license {
                 name.set("MIT License")
-                url.set("https://github.com/Runkang10/compact-lib")
+                url.set("https://github.com/Runkang10/compact-lib/blob/main/LICENSE")
             }
         }
         developers {
