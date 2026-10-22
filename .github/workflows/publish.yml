@@ -22,7 +22,7 @@ jobs:
           cache: gradle
 
       - name: Publish
-        run: ./gradlew publishToMavenCentral --no-daemon --no-build-cache
+        run: ./gradlew :library:publishToMavenCentral --no-daemon --no-build-cache
         env:
           production: true
           version: ${{ inputs.version }}
