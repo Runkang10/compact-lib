@@ -23,7 +23,7 @@ jobs:
           java-version: 25
           cache: gradle
 
-      - name: Publish
+      - name: Publish (Maven Central)
         run: ./gradlew :library:publishToMavenCentral --no-daemon --no-build-cache
         env:
           production: true
@@ -32,3 +32,10 @@ jobs:
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALPASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYPASSWORD }}
+
+      - name: Github Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: v${{ inputs.version }}
+          body_path: CHANGELOGS.md
+          generate_release_notes: true
