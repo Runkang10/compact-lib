@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Version of the library
+        description: Version value for the next release
         required: true
         type: string
 
