@@ -13,7 +13,7 @@ dependencies {
 }
 
 if (Env.isProduction) mavenPublishing {
-    publishToMavenCentral(true, DeploymentValidation.PUBLISHED)
+    publishToMavenCentral(true, DeploymentValidation.VALIDATED)
 
     signAllPublications()
     checksums(Checksum.MD5, Checksum.SHA1)
