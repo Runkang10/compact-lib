@@ -3,13 +3,15 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Version value for the next release
+        description: Version value for the next release (do not include the 'v' prefix)
         required: true
         type: string
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v7
