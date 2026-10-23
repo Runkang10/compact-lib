@@ -19,7 +19,8 @@ dependencies {
 ```
 
 ### Maven
-```js
+```xml
+
 <dependency>
     <groupId>io.github.runkang10</groupId>
     <artifactId>compact-lib</artifactId>
