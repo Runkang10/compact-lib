@@ -11,7 +11,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -23,7 +23,7 @@ jobs:
           java-version: 25
           cache: gradle
 
-      - name: Publish (Maven Central)
+      - name: Publish to Maven Central
         run: ./gradlew :library:publishToMavenCentral --no-daemon --no-build-cache
         env:
           production: true
@@ -36,6 +36,7 @@ jobs:
       - name: Github Release
         uses: softprops/action-gh-release@v3
         with:
+          token: ${{ github.token }}
           tag_name: v${{ inputs.version }}
           body_path: CHANGELOGS.md
           generate_release_notes: true
