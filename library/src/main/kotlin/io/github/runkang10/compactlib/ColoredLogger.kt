@@ -16,6 +16,9 @@ class ColoredLogger private constructor(
             var infoColor: TextColor = NamedTextColor.AQUA
             var warnColor: TextColor = NamedTextColor.YELLOW
             var errorColor: TextColor = NamedTextColor.RED
+            var debugColor: TextColor = NamedTextColor.YELLOW
+
+            var allowDebugLogging = false
         }
     }
 
@@ -39,6 +42,7 @@ class ColoredLogger private constructor(
             tag.tag("info", Tag.styling(configuration.infoColor))
             tag.tag("warn", Tag.styling(configuration.warnColor))
             tag.tag("error", Tag.styling(configuration.errorColor))
+            tag.tag("debug", Tag.styling(configuration.debugColor))
         }
         .build()
 
@@ -58,4 +62,13 @@ class ColoredLogger private constructor(
         tags: TagResolver = TagResolver.empty(),
         throwable: Throwable? = null,
     ) = logger.error(miniMessage.deserialize("<error>$message", tags), throwable)
+
+    fun debug(
+        message: String,
+        tags: TagResolver = TagResolver.empty(),
+    ) {
+        if (!configuration.allowDebugLogging) return
+
+        logger.debug(miniMessage.deserialize("<debug>$message", tags))
+    }
 }
