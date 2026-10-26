@@ -46,14 +46,12 @@ class ColoredLogger private constructor(
     fun info(
         message: String,
         tags: TagResolver = TagResolver.empty(),
-        throwable: Throwable? = null,
-    ) = logger.info(miniMessage.deserialize("<info>$message", tags), throwable)
+    ) = logger.info(miniMessage.deserialize("<info>$message", tags))
 
     fun warn(
         message: String,
         tags: TagResolver = TagResolver.empty(),
-        throwable: Throwable? = null,
-    ) = logger.warn(miniMessage.deserialize("<warn>$message", tags), throwable)
+    ) = logger.warn(miniMessage.deserialize("<warn>$message", tags))
 
     fun error(
         message: String,
