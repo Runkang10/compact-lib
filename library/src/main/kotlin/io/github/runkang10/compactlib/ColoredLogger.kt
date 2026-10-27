@@ -7,7 +7,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage
 import net.kyori.adventure.text.minimessage.tag.Tag
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
 
-class ColoredLogger private constructor(
+class ColoredLogger(
     private val logger: ComponentLogger,
     private val configuration: Configuration,
 ) {
@@ -33,9 +33,19 @@ class ColoredLogger private constructor(
     ) : this(ComponentLogger.logger(name), Configuration().apply(configuration))
 
     constructor(
+        name: String,
+        configuration: Configuration,
+    ) : this(ComponentLogger.logger(name), configuration)
+
+    constructor(
         clazz: Class<*>,
         configuration: Configuration.() -> Unit = {},
     ) : this(ComponentLogger.logger(clazz), Configuration().apply(configuration))
+
+    constructor(
+        clazz: Class<*>,
+        configuration: Configuration,
+    ) : this(ComponentLogger.logger(clazz), configuration)
 
     private val miniMessage = MiniMessage.builder(MiniMessage.Preset.DEFAULT)
         .editTags { tag ->
@@ -69,6 +79,6 @@ class ColoredLogger private constructor(
     ) {
         if (!configuration.allowDebugLogging) return
 
-        logger.debug(miniMessage.deserialize("<debug>$message", tags))
+        logger.info(miniMessage.deserialize("[DEBUG] <debug>$message", tags))
     }
 }
