@@ -11,11 +11,14 @@ class TestBootstrap : PluginBootstrap {
 
 
     override fun bootstrap(context: BootstrapContext) {
-        logger = ColoredLogger(context.logger)
+        logger = ColoredLogger(context.logger) {
+            allowDebugLogging = true
+        }
 
-        logger.info("This an info level message.")
-        logger.warn("This a warn level message.")
-        logger.error("This an error level message.")
+        logger.info("This is an info level message.")
+        logger.warn("This is a warn level message.")
+        logger.error("This is an error level message.")
+        logger.debug("This is a debug level message.")
     }
 
     override fun createPlugin(context: PluginProviderContext) = TestPlugin(logger)
