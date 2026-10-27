@@ -1,3 +1,6 @@
 ## Features
-- Added Component, TextComponent and TranslatableComponent DSL wrappers
-- Added offline player argument
+- Added `ColoredLogger#debug`
+
+## Changes
+- `ColoredLogger` can now support direct `ColoredLogger.Configuration` instance as a parameter
+- Removed throwable parameter from ColoredLogger#info and ColoredLogger#warn
