@@ -3,4 +3,4 @@
 
 ## Changes
 - `ColoredLogger` can now support direct `ColoredLogger.Configuration` instance as a parameter
-- Removed throwable parameter from ColoredLogger#info and ColoredLogger#warn
+- Removed throwable parameter from `ColoredLogger#info` and `ColoredLogger#warn`
