@@ -1,6 +1,5 @@
 ## Features
-- Added `ColoredLogger#debug`
+- Added `buildMiniMessage` DSL
 
 ## Changes
-- `ColoredLogger` can now support direct `ColoredLogger.Configuration` instance as a parameter
-- Removed throwable parameter from `ColoredLogger#info` and `ColoredLogger#warn`
+- `ColoredLogger#logger` is now accessible publicly
