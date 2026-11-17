@@ -1,6 +1,7 @@
 package io.github.runkang10.compactlib.test
 
 import io.github.runkang10.compactlib.ColoredLogger
+import io.github.runkang10.compactlib.buildMiniMessage
 import io.papermc.paper.plugin.bootstrap.BootstrapContext
 import io.papermc.paper.plugin.bootstrap.PluginBootstrap
 import io.papermc.paper.plugin.bootstrap.PluginProviderContext
@@ -19,6 +20,17 @@ class TestBootstrap : PluginBootstrap {
         logger.warn("This is a warn level message.")
         logger.error("This is an error level message.")
         logger.debug("This is a debug level message.")
+
+        logger.logger.info(
+            buildMiniMessage {
+                append("This is")
+                appendSpace()
+                appendLine("a message")
+                appendLine("Line 2")
+                appendNewline()
+                append("Line 4")
+            },
+        )
     }
 
     override fun createPlugin(context: PluginProviderContext) = TestPlugin(logger)
