@@ -8,7 +8,7 @@ import net.kyori.adventure.text.minimessage.tag.Tag
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
 
 class ColoredLogger(
-    private val logger: ComponentLogger,
+    val logger: ComponentLogger,
     private val configuration: Configuration,
 ) {
     companion object {
