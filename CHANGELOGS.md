@@ -1,5 +1,2 @@
-## Features
-- Added `buildMiniMessage` DSL
-
-## Changes
-- `ColoredLogger#logger` is now accessible publicly
+## Fixes
+- Fixed `buildMiniMessage` missing option to allow using custom MiniMessage instances
