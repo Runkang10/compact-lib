@@ -7,7 +7,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage
 annotation class MiniMessageDsl
 
 @MiniMessageDsl
-class MiniMessageBuilder(private val miniMessage: MiniMessage = MiniMessage.miniMessage()) {
+class MiniMessageBuilder(private val miniMessage: MiniMessage) {
     private val contents = mutableListOf<String>()
 
 
@@ -22,4 +22,7 @@ class MiniMessageBuilder(private val miniMessage: MiniMessage = MiniMessage.mini
     fun build() = Component.textOfChildren(*contents.map { miniMessage.deserialize(it) }.toTypedArray())
 }
 
-fun buildMiniMessage(block: MiniMessageBuilder.() -> Unit) = MiniMessageBuilder().apply(block).build()
+fun buildMiniMessage(
+    miniMessage: MiniMessage = MiniMessage.miniMessage(),
+    block: MiniMessageBuilder.() -> Unit,
+) = MiniMessageBuilder(miniMessage).apply(block).build()
