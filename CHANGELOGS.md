@@ -1,2 +1,2 @@
-## Fixes
-- Fixed `buildMiniMessage` missing option to allow using custom MiniMessage instances
+## Changes
+- `MiniMessageBuilder#build` component build behavior has been changed
