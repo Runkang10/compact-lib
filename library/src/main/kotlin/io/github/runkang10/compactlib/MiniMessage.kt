@@ -2,12 +2,16 @@ package io.github.runkang10.compactlib
 
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
 
 @DslMarker
 annotation class MiniMessageDsl
 
 @MiniMessageDsl
-class MiniMessageBuilder(private val miniMessage: MiniMessage) {
+class MiniMessageBuilder(
+    private val miniMessage: MiniMessage,
+    private val tags: TagResolver,
+) {
     private val contents = mutableListOf<String>()
 
 
@@ -19,10 +23,11 @@ class MiniMessageBuilder(private val miniMessage: MiniMessage) {
 
     fun appendNewline() = append("<newline>")
 
-    fun build() = Component.textOfChildren(*contents.map { miniMessage.deserialize(it) }.toTypedArray())
+    fun build(): Component = miniMessage.deserialize(contents.joinToString(), tags)
 }
 
 fun buildMiniMessage(
     miniMessage: MiniMessage = MiniMessage.miniMessage(),
+    tags: TagResolver = TagResolver.empty(),
     block: MiniMessageBuilder.() -> Unit,
-) = MiniMessageBuilder(miniMessage).apply(block).build()
+) = MiniMessageBuilder(miniMessage, tags).apply(block).build()
