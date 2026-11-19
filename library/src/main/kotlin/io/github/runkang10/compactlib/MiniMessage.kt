@@ -23,7 +23,7 @@ class MiniMessageBuilder(
 
     fun appendNewline() = append("<newline>")
 
-    fun build(): Component = miniMessage.deserialize(contents.joinToString(), tags)
+    fun build(): Component = miniMessage.deserialize(contents.joinToString(""), tags)
 }
 
 fun buildMiniMessage(
